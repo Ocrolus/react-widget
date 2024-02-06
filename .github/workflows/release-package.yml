@@ -27,8 +27,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - name: Login to GitHub Packages
-        run: npm login --registry=https://npm.pkg.github.com/ --scope=@jbruce1-ocrolus --always-auth=false
+      - name: Authenticate with GitHub Packages
+        uses: actions/setup-npm@v2
+        with:
+          registry-url: https://npm.pkg.github.com/
+          scope: '@jbruce1-ocrolus'
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm ci
