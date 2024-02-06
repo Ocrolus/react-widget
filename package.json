@@ -9,6 +9,9 @@
     "webpack": "webpack serve --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "@jbruce1-ocrolus:registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ocrolus/react-widget.git"
