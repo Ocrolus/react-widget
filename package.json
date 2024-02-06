@@ -4,7 +4,7 @@
   "description": "React interface for initializing and rendering the Ocrolus upload widget.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "rm -rf ./dist && webpack",
     "start": "npm run build && serve .",
     "webpack": "webpack serve --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
