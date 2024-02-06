@@ -1,0 +1,45 @@
+{
+  "name": "ocrolus-react-widget",
+  "version": "1.0.0",
+  "description": "React interface for initializing and rendering the Ocrolus upload widget.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "npm run build && serve .",
+    "webpack": "webpack serve --port 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ocrolus/react-widget.git"
+  },
+  "keywords": [],
+  "author": "Jonathan Bruce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ocrolus/react-widget/issues"
+  },
+  "homepage": "https://github.com/Ocrolus/react-widget#readme",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.14",
+    "@types/react": "^17.0.75",
+    "@types/react-dom": "^17.0.2",
+    "jest-fetch-mock": "^3.0.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "serve": "^14.2.1",
+    "ts-loader": "^9.5.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
