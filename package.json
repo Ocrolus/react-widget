@@ -1,12 +1,14 @@
 {
   "name": "ocrolus-react-widget",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "React interface for initializing and rendering the Ocrolus upload widget.",
-  "main": "dist/bundle.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "src/types/bundle.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "rm -rf ./dist && webpack",
+    "rollup": "rm -rf ./dist && rollup -c --bundleConfigAsCjs",
     "start": "npm run build && serve .",
-    "webpack": "webpack serve --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -16,7 +18,15 @@
     "type": "git",
     "url": "git+https://github.com/Ocrolus/react-widget.git"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-component",
+    "ocrolus"
+  ],
+  "tags": [
+    "react",
+    "ocrolus"
+  ],
   "author": "Jonathan Bruce",
   "license": "ISC",
   "bugs": {
@@ -24,25 +34,30 @@
   },
   "homepage": "https://github.com/Ocrolus/react-widget#readme",
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "dependencies": {
-    "typescript": "^5.3.3"
+    "react": "^17.0.0 || ^18.0.2",
+    "react-dom": "^17.0.0 || ^18.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.11.14",
     "@types/react": "^17.0.75",
     "@types/react-dom": "^17.0.2",
+    "babel-loader": "^9.1.3",
     "jest-fetch-mock": "^3.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^4.9.6",
+    "rollup-plugin-ts": "^3.4.5",
     "serve": "^14.2.1",
     "ts-loader": "^9.5.1",
-    "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "webpack": "^5.90.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "typescript": "^5.3.3"
   }
 }

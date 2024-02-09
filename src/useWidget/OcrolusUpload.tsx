@@ -1,8 +1,9 @@
+import React from "react";
 import { useWidgetLibrary } from "src/hooks/useWidgetLibrary";
 import { OcrolusUploadProps as LibraryUploadProps } from "src/types/OcrolusUpload";
 
 interface OcrolusUploadProps extends LibraryUploadProps {
-  loadingElement?: JSX.Element;
+  loadingElement?: React.ComponentType;
 }
 
 export function OcrolusUpload(
@@ -11,8 +12,13 @@ export function OcrolusUpload(
   const { ready: libReady, OcrolusWidgetLibrary: OcrolusLib } =
     useWidgetLibrary();
 
+  console.log();
   if (!libReady || !OcrolusLib.OcrolusUpload) {
-    return <>{props.loadingElement}</> || <div> Loading...</div>;
+    return props.loadingElement ? (
+      <props.loadingElement />
+    ) : (
+      <div> Loading...</div>
+    );
   }
 
   return (
