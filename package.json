@@ -1,6 +1,6 @@
 {
   "name": "ocrolus-react-widget",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React interface for initializing and rendering the Ocrolus upload widget.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
