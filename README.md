@@ -48,8 +48,6 @@ const MyComponent = () => {
       token="your-auth-token"
       onClose={handleUploadClose}
       onError={handleError}
-      className="custom-upload-widget"
-      style={{ border: "1px solid #ccc" }}
       readyObserver={(isReady) => console.log("Widget is ready:", isReady)}
     >
       {/* Your component content goes here */}
