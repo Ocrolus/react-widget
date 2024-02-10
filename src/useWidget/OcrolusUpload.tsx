@@ -12,7 +12,6 @@ export function OcrolusUpload(
   const { ready: libReady, OcrolusWidgetLibrary: OcrolusLib } =
     useWidgetLibrary();
 
-  console.log();
   if (!libReady || !OcrolusLib.OcrolusUpload) {
     return props.loadingElement ? (
       <props.loadingElement />

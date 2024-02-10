@@ -11,7 +11,7 @@ export interface WidgetErrorDictionary {
 
 export const WIDGET_ERRORS: WidgetErrorDictionary = {
   UNABLE_TO_INITIALIZE_LIBRARY: {
-    code: 'unable_to_initialize_library',
+    code: EVENTS.INITIALIZE_LIBRARY_FAILURE,
     cause: 'Unable to initialize widget library',
   },
   INITIALIZE_JWT_TOKEN_FAILURE: {
