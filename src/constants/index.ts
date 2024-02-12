@@ -30,4 +30,4 @@ export const PAGES = {
   PLAID_CONNECT: "plaid-connect",
 };
 
-export const WIDGET_HOST = "https://widget-demo.ocrolus.com";
+export const WIDGET_HOST = "https://widget.ocrolus.com";
