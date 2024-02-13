@@ -21,7 +21,7 @@ The Ocrolus Upload component does not wrap any JSX around the component you pass
 - `widgetUuid` (required): A unique identifier for the widget.
 - `token` (optional): An authentication token.
 - `onClose` (optional): Callback function called when the upload is closed. This will return how many files were uploaded.
-- `onOpen` (optional): Callback function that must return a promise. The purpose of this method is to execute just in time token fetching prior to opening the widget.
+- `onOpen` (optional): Callback function that must return a promise. The purpose of this method is to execute just in time token fetching prior to opening the widget. In order to get just in time initialization return the access token in this method.
 - `onError` (optional): Callback function called in case of an error. This will return errors defined in `WIDGET_ERROR` if the library or the jwt token initialization fails.
 - `loadingElement`: (optional): React.ComponentType What to render while the library is initializing. 
 - `readyObserver` (optional): Callback to observe the readiness state. This will be called when ready is true.
@@ -44,6 +44,7 @@ const MyComponent = () => {
     const response = await fetch("https://www.myTokenServer.com")
     const accessToken = await response.json()
     setToken(accessToken)
+    return accessToken
   }
 
   return (
