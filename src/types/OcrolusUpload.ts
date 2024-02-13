@@ -15,6 +15,7 @@ export interface OcrolusUploadProps extends OcrolusUploadOptions {
   className?: string;
   style?: React.CSSProperties;
   readyObserver?: (isReady: boolean) => void;
+  onOpen?: () => Promise<any>;
 }
 
 export interface OcrolusUploadHookValues {

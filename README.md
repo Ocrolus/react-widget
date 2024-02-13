@@ -21,10 +21,10 @@ The Ocrolus Upload component does not wrap any JSX around the component you pass
 - `widgetUuid` (required): A unique identifier for the widget.
 - `token` (optional): An authentication token.
 - `onClose` (optional): Callback function called when the upload is closed. This will return how many files were uploaded.
+- `onOpen` (optional): Callback function that must return a promise. The purpose of this method is to execute just in time token fetching prior to opening the widget.
 - `onError` (optional): Callback function called in case of an error. This will return errors defined in `WIDGET_ERROR` if the library or the jwt token initialization fails.
 - `loadingElement`: (optional): React.ComponentType What to render while the library is initializing. 
 - `readyObserver` (optional): Callback to observe the readiness state. This will be called when ready is true.
-
 #### Example
 
 ```jsx
@@ -32,6 +32,7 @@ import { OcrolusUpload } from "ocrolus-upload-package";
 
 const MyComponent = () => {
   const [error, setError] = useState<boolean>(false);
+  const [token, setToken] = useState<string>();
   const handleUploadClose = (data) => {
     console.log("Upload closed. Uploaded file count:", data.uploadedFileCount);
   };
@@ -39,13 +40,19 @@ const MyComponent = () => {
     // Do something with error data
     setError(true)
   }
+  const handleFetch = async () => {
+    const response = await fetch("https://www.myTokenServer.com")
+    const accessToken = await response.json()
+    setToken(accessToken)
+  }
 
   return (
     error ? 
         {/* Your error content here */}
     : <OcrolusUpload
       widgetUuid="your-unique-uuid"
-      token="your-auth-token"
+      token={token}
+      onOpen={handleFetch}
       onClose={handleUploadClose}
       onError={handleError}
       readyObserver={(isReady) => console.log("Widget is ready:", isReady)}
