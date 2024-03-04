@@ -1,6 +1,7 @@
 import {EVENTS} from 'src/constants';
 import {Configurations} from 'src/types/appTypes';
-import {WIDGET_ERRORS, WidgetError} from 'src/types/error';
+import { WidgetError} from 'src/types/error';
+import { WIDGET_ERRORS } from 'src/constants/errors';
 import {useCallback, useEffect} from 'react';
 
 export const useSetBackgroundTransparent = () => {

@@ -7,7 +7,7 @@
       "esnext"
     ],
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types", "src/types/typings"],
+    // "typeRoots": ["./node_modules/@types", "src/types/typings"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowUmdGlobalAccess": true,

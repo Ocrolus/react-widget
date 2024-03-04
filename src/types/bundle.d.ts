@@ -7,7 +7,7 @@ import {
 import { OcrolusUpload } from "src/useWidget";
 import { OcrolusUploadTypes as widgetTypes } from "src/useWidget";
 
-declare module "ocrolus-react-widget" {
+declare module "ocrolus-widget-react" {
   export declare function useWidget(
     props: OcrolusUploadOptions
   ): OcrolusUploadHookValues;

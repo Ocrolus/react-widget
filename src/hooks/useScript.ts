@@ -1,48 +1,67 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 
 export const useScript = (
   url: string,
-  onLoad: () => void,
-  scriptId: string
+  scriptId: string,
+  onLoad?: () => void,
+  onError?: () => void
 ) => {
   useEffect(() => {
-    let isMounted = true;
-    const script = document.createElement("script");
+    let script: HTMLScriptElement | null = document.getElementById(
+      scriptId
+    ) as HTMLScriptElement | null;
+
     const handleLoad = () => {
-      if (onLoad && typeof onLoad === "function") {
+      if (onLoad) {
         onLoad();
       }
     };
-    if (document.getElementById(scriptId)) {
-      handleLoad();
-    } else {
-      script.src = url;
-      script.async = true;
-      script.id = scriptId;
-
-      script.addEventListener("load", handleLoad);
-
-      document.body.appendChild(script);
-    }
-
-    return () => {
-      isMounted = false;
-      script.removeEventListener("load", handleLoad);
-      if (isMounted) {
+    const handleError = () => {
+      if (onError) {
+        onError();
+      }
+      if (script) {
+        script.removeEventListener("load", handleLoad);
+        script.removeEventListener("error", handleError);
         document.body.removeChild(script);
       }
     };
-  }, [url, onLoad, scriptId]);
+
+    if (!script) {
+      script = document.createElement("script");
+      script.src = url;
+      script.async = true;
+      script.id = scriptId;
+      document.body.appendChild(script);
+      script.addEventListener("load", handleLoad);
+      script.addEventListener("error", handleError);
+    }
+    else {
+      handleLoad();
+    }
+
+    return () => {
+      const cleanupScript = document.getElementById(scriptId);
+      if (cleanupScript) {
+        cleanupScript.removeEventListener("load", handleLoad);
+        cleanupScript.removeEventListener("error", handleError);
+        document.body.removeChild(cleanupScript);
+      }
+    };
+  }, [url, scriptId]);
 };
 
-export const useBundle = (url: string, onLoad: () => void) => {
+export const useBundle = (
+  url: string,
+  onLoad: () => void,
+  onError?: () => void
+) => {
   const memoizedURL = useMemo(() => url, [url]);
-  const memoizedCallback = useCallback(onLoad, [onLoad]);
 
   useEffect(() => {
     const Ocrolus = { React };
     window.Ocrolus = Ocrolus;
   }, []);
 
-  useScript(memoizedURL, memoizedCallback, "ocrolus-bundle");
+  useScript(memoizedURL, "ocrolus-bundle", onLoad, onError);
 };

@@ -1,8 +1,9 @@
 import {useBundle} from 'src/hooks/useScript';
 import {OcrolusLibrary} from 'src/types';
 import {useEffect, useState} from 'react';
-import {WIDGET_ERRORS, WidgetError} from 'src/types/error';
+import { WidgetError} from 'src/types/error';
 import { WIDGET_HOST } from 'src/constants';
+import { WIDGET_ERRORS } from 'src/constants/errors';
 
 export function useWidgetLibrary() {
   const [ready, setReady] = useState<boolean>(false);
@@ -11,24 +12,28 @@ export function useWidgetLibrary() {
 
   useBundle(`${WIDGET_HOST}/static/library_sdk.bundle.js`, () => {
     const checkForLibrary = setInterval(() => {
-      if (globalLibrary) {
+      if (window.OcrolusWidgetLibrary) {
         setReady(true);
+        clearInterval(checkForLibrary);
       }
     }, 500);
     setTimeout(() => {
-      if (!globalLibrary) {
+      if (!window.OcrolusWidgetLibrary) {
         clearInterval(checkForLibrary);
         setError(WIDGET_ERRORS.UNABLE_TO_INITIALIZE_LIBRARY);
       }
+      else {
+        setReady(true);
+        clearInterval(checkForLibrary);
+      }
     }, 10000);
   });
-  const {OcrolusWidgetLibrary: globalLibrary} = window;
 
   useEffect(() => {
-    if (ready && globalLibrary) {
-      setOcrolusWidgetLibrary(globalLibrary);
+    if (ready && window.OcrolusWidgetLibrary) {
+      setOcrolusWidgetLibrary(window.OcrolusWidgetLibrary);
     }
-  }, [ready, globalLibrary]);
+  }, [ready, window.OcrolusWidgetLibrary]);
 
   return {ready, OcrolusWidgetLibrary, error};
 }

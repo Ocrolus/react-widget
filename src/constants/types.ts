@@ -1,10 +1,9 @@
-export interface DevConfigurations {
+export interface DevConfigurations extends LenderConfigurations {
   previewMode?: boolean;
   page?: string;
 }
 
 export interface LenderConfigurations {
-  description: string;
   domains: string[];
   brandingColor: string;
   uploadHeaderText: string;

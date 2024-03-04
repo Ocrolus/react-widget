@@ -1,4 +1,4 @@
-import {snakeToCamel, isPreviewModeEnabled} from 'utils/helper';
+import {snakeToCamel, isPreviewModeEnabled} from '../helper';
 
 describe('snakeToCamel', () => {
   it('converts snake_case keys to camelCase keys in an object', () => {
