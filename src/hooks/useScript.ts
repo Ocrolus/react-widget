@@ -36,6 +36,9 @@ export const useScript = (
       script.addEventListener("load", handleLoad);
       script.addEventListener("error", handleError);
     }
+    else {
+      handleLoad();
+    }
 
     return () => {
       const cleanupScript = document.getElementById(scriptId);

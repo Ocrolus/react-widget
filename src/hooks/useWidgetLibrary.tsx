@@ -10,8 +10,6 @@ export function useWidgetLibrary() {
   const [error, setError] = useState<WidgetError>();
   const [OcrolusWidgetLibrary, setOcrolusWidgetLibrary] = useState<OcrolusLibrary>({});
 
-  const {OcrolusWidgetLibrary: globalLibrary} = window;
-
   useBundle(`${WIDGET_HOST}/static/library_sdk.bundle.js`, () => {
     const checkForLibrary = setInterval(() => {
       if (window.OcrolusWidgetLibrary) {
@@ -27,16 +25,15 @@ export function useWidgetLibrary() {
       else {
         setReady(true);
         clearInterval(checkForLibrary);
-
       }
     }, 10000);
   });
 
   useEffect(() => {
-    if (ready && globalLibrary) {
-      setOcrolusWidgetLibrary(globalLibrary);
+    if (ready && window.OcrolusWidgetLibrary) {
+      setOcrolusWidgetLibrary(window.OcrolusWidgetLibrary);
     }
-  }, [ready, globalLibrary]);
+  }, [ready, window.OcrolusWidgetLibrary]);
 
   return {ready, OcrolusWidgetLibrary, error};
 }
