@@ -19,6 +19,6 @@ declare global {
   interface Window {
     "loaded-react-widget": boolean;
     Ocrolus?: { React };
-    OcrolusWidgetLibrary: OcrolusLibrary;
+    OcrolusWidgetLibrary?: OcrolusLibrary;
   }
 }

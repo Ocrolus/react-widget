@@ -5,7 +5,7 @@
 Install the package using npm:
 
 ```bash
-npm install ocrolus-react-widget
+npm install ocrolus-widget-react
 ```
 
 ## Usage

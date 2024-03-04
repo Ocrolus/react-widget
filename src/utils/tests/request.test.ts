@@ -1,4 +1,4 @@
-import {request} from 'utils/request';
+import {request} from '../request';
 import {enableFetchMocks, FetchMock} from 'jest-fetch-mock';
 
 describe('request', () => {
