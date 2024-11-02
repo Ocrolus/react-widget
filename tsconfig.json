@@ -7,7 +7,7 @@
       "esnext"
     ],
     "jsx": "react-jsx",
-    // "typeRoots": ["./node_modules/@types", "src/types/typings"],
+    "typeRoots": ["./node_modules/@types", "src/types/typings"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowUmdGlobalAccess": true,
@@ -26,9 +26,17 @@
     "emitDeclarationOnly": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["*", "src/*"]
+      "@ocrolus-widget-react/*": ["packages/ocrolus-widget-react/*"],
+      "@example/*": ["packages/example/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "include": [
+    "packages/ocrolus-widget-react/src/**/*.ts",
+    "packages/ocrolus-widget-react/src/**/*.tsx",
+    "packages/ocrolus-widget-react/src/**/*.d.ts",
+    "packages/example/src/**/*.ts",
+    "packages/example/src/**/*.tsx",
+    "packages/example/src/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "**/*.test.tsx", "**/*.test.ts"]
 }

@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "serve": "node serve.js",
+    "start": "pnpm run build && pnpm run serve"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@mui/icons-material": "^6.1.6",
+    "@mui/material": "^6.1.6",
+    "ocrolus-widget-react": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@emotion/styled": "^11.13.0",
+    "@testing-library/react": "^14.2.1",
+    "@types/react": "^17.0.75",
+    "typescript": "^5.6.3"
+  }
+}

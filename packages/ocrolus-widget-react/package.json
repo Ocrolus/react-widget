@@ -1,0 +1,57 @@
+{
+    "name": "ocrolus-widget-react",
+    "version": "1.0.12",
+    "description": "React interface for initializing and rendering the Ocrolus upload widget.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "src/types/bundle.d.ts",
+    "type": "module",
+    "scripts": {
+        "build": "node esbuild.config.js",
+        "test": "jest"
+    },
+    "publishConfig": {
+        "@jbruce1-ocrolus:registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Ocrolus/react-widget.git"
+    },
+    "keywords": [
+        "react",
+        "react-component",
+        "ocrolus"
+    ],
+    "tags": [
+        "react",
+        "ocrolus"
+    ],
+    "author": "Jonathan Bruce",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Ocrolus/react-widget/issues"
+    },
+    "homepage": "https://github.com/Ocrolus/react-widget#readme",
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.4.2",
+        "@testing-library/react": "^14.2.1",
+        "@types/jest": "^29.5.11",
+        "@types/node": "^20.11.24",
+        "@types/react": "^17.0.75",
+        "@types/react-dom": "^17.0.2",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "jest-fetch-mock": "^3.0.3",
+        "prettier": "^3.2.5",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "serve": "^14.2.1",
+        "ts-jest": "^29.1.2",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.6.3"
+    }
+}
