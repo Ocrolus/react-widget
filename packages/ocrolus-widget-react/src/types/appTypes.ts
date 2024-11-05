@@ -3,7 +3,7 @@ import React from "react";
  * These are the dev configurations that will be passed on to the widget, these do not
  * include the client configs.
  */
-import { DevConfigurations, LenderConfigurations } from "@ocrolus-widget-react/src/constants/types";
+import { DevConfigurations, LenderConfigurations } from "packages/ocrolus-widget-react/src/constants/types";
 
 export interface Configurations {
   lenderConfig: LenderConfigurations | null;

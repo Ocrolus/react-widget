@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { WIDGET_HOST } from "@ocrolus-widget-react/src/constants";
-import { useWidgetLibrary } from "@ocrolus-widget-react/src/hooks/useWidgetLibrary";
-import { Configurations } from "@ocrolus-widget-react/src/types/appTypes";
-import { WIDGET_ERRORS } from "@ocrolus-widget-react/src/constants/errors";
-import { WidgetError } from "@ocrolus-widget-react/src/types/error";
+import { WIDGET_HOST } from "packages/ocrolus-widget-react/src/constants";
+import { useWidgetLibrary } from "packages/ocrolus-widget-react/src/hooks/useWidgetLibrary";
+import { Configurations } from "packages/ocrolus-widget-react/src/types/appTypes";
+import { WIDGET_ERRORS } from "packages/ocrolus-widget-react/src/constants/errors";
+import { WidgetError } from "packages/ocrolus-widget-react/src/types/error";
 
 export function useLoader(
   config: Configurations,
@@ -12,7 +12,7 @@ export function useLoader(
   handlers?: {
     onError?: (e: any) => void;
     onReady?: (isReady: boolean) => void;
-  }
+  },
 ) {
   const [ready, setReady] = useState<boolean>(false);
   const [error, setError] = useState<WidgetError | null>(null);
@@ -22,6 +22,9 @@ export function useLoader(
 
   useEffect(() => {
     const iframeReady = window["loaded-react-widget"];
+    console.log("frame", iframeReady);
+    console.log("token", token?.length);
+    console.log("config", config);
     setReady(!!(iframeReady && token?.length && config));
   }, [token, config, libReady, loaderCalled]);
 
@@ -43,7 +46,7 @@ export function useLoader(
             host: WIDGET_HOST,
             widgetConfig: config,
           },
-          true
+          true,
         );
         if (handlers && handlers.onReady) {
           handlers.onReady(true);

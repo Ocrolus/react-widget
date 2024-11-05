@@ -2,24 +2,20 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { useScript, useBundle } from "../useScript";
 
 const appendRef = document.body.appendChild;
-const getLoadSpy = () => {
-  return jest
+const getLoadSpy = () => jest
     .spyOn(document.body, "appendChild")
-    .mockImplementation((element) => {
+    .mockImplementation(element => {
       setTimeout(() => element.dispatchEvent(new Event("load")), 0);
       appendRef.call(document.body, element);
       return element;
     });
-};
-const getFailureSpy = () => {
-  return jest
+const getFailureSpy = () => jest
     .spyOn(document.body, "appendChild")
-    .mockImplementation((element) => {
+    .mockImplementation(element => {
       setTimeout(() => element.dispatchEvent(new Event("error")), 0);
       appendRef.call(document.body, element);
       return element;
     });
-};
 
 describe("useScript", () => {
   afterEach(() => {
@@ -34,7 +30,7 @@ describe("useScript", () => {
     const scriptId = "myScript";
 
     renderHook(() =>
-      useScript("https://example.com/script.js", scriptId, onLoad, onError)
+      useScript("https://example.com/script.js", scriptId, onLoad, onError),
     );
 
     await waitFor(() => {
@@ -52,7 +48,7 @@ describe("useScript", () => {
     const scriptId = "myScript";
 
     renderHook(() =>
-      useScript("https://example.com/nonexistent.js", scriptId, onLoad, onError)
+      useScript("https://example.com/nonexistent.js", scriptId, onLoad, onError),
     );
 
     await waitFor(() => {
@@ -78,7 +74,7 @@ describe("useBundle", () => {
     const onFailure = jest.fn();
 
     renderHook(() =>
-      useBundle("https://example.com/bundle.js", onSuccess, onFailure)
+      useBundle("https://example.com/bundle.js", onSuccess, onFailure),
     );
     await waitFor(() => {
       expect(onSuccess).toHaveBeenCalled();
@@ -91,7 +87,7 @@ describe("useBundle", () => {
     const appendChildSpy = getFailureSpy()
 
     renderHook(() =>
-      useBundle("https://example.com/nonexistent.js", onSuccess, onFailure)
+      useBundle("https://example.com/nonexistent.js", onSuccess, onFailure),
     );
     await waitFor(() => {
       expect(onFailure).toHaveBeenCalled();

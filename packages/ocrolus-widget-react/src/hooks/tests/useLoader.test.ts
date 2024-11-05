@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { useLoader } from "../useLoader";
 import { parsedConfig } from "../tests/constants";
 
-jest.mock("@ocrolus-widget-react/src/hooks/useWidgetLibrary", () => ({
+jest.mock("packages/ocrolus-widget-react/src/hooks/useWidgetLibrary", () => ({
   useWidgetLibrary: () => {
     window["loaded-react-widget"] = true;
 
@@ -20,7 +20,7 @@ describe("useLoader", () => {
     const token = "mock-token";
 
     const { result } = renderHook(() =>
-      useLoader(parsedConfig, widgetUuid, token, { onReady: onReadyMock })
+      useLoader(parsedConfig, widgetUuid, token, { onReady: onReadyMock }),
     );
     expect(result.current).toEqual({
       ready: true,
@@ -35,7 +35,7 @@ describe("useLoader", () => {
     const token = "mock-token";
 
     // Mock the widget loading failure
-    jest.doMock("@ocrolus-widget-react/src/hooks/useWidgetLibrary", () => ({
+    jest.doMock("packages/ocrolus-widget-react/src/hooks/useWidgetLibrary", () => ({
       useWidgetLibrary: () => ({
         loadWidget: () => {
           throw new Error("Widget loading failed");
@@ -44,7 +44,7 @@ describe("useLoader", () => {
     }));
 
     const { result } = renderHook(() =>
-      useLoader(parsedConfig, widgetUuid, token, { onError: onErrorMock })
+      useLoader(parsedConfig, widgetUuid, token, { onError: onErrorMock }),
     );
 
     waitFor(() => {

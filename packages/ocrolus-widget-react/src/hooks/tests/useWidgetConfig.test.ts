@@ -26,7 +26,7 @@ describe("useWidgetConfig", () => {
       expect(result.current.config).toEqual(parsedConfig);
       expect(global.fetch).toHaveBeenCalledWith(
         `${WIDGET_HOST}/v1/widget/${widgetUuid}/config`,
-        {}
+        {},
       );
     });
   });

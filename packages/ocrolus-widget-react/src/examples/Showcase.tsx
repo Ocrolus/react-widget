@@ -3,7 +3,7 @@ import {
   useWidget,
   OcrolusUpload,
   OcrolusUploadNative,
-} from "@ocrolus-widget-react/src/useWidget";
+} from "packages/ocrolus-widget-react/src/useWidget";
 
 function LibraryStart() {
   const [showButton, setButton] = useState<boolean>(false);

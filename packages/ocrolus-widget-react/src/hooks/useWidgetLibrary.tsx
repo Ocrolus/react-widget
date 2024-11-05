@@ -1,9 +1,9 @@
-import {useBundle} from '@ocrolus-widget-react/src/hooks/useScript';
-import {OcrolusLibrary} from '@ocrolus-widget-react/src/types';
+import {useBundle} from 'packages/ocrolus-widget-react/src/hooks/useScript';
+import {OcrolusLibrary} from 'packages/ocrolus-widget-react/src/types';
 import {useEffect, useState} from 'react';
-import { WidgetError} from '@ocrolus-widget-react/src/types/error';
-import { WIDGET_HOST } from '@ocrolus-widget-react/src/constants';
-import { WIDGET_ERRORS } from '@ocrolus-widget-react/src/constants/errors';
+import { WidgetError} from 'packages/ocrolus-widget-react/src/types/error';
+import { WIDGET_HOST } from 'packages/ocrolus-widget-react/src/constants';
+import { WIDGET_ERRORS } from 'packages/ocrolus-widget-react/src/constants/errors';
 
 export function useWidgetLibrary() {
   const [ready, setReady] = useState<boolean>(false);

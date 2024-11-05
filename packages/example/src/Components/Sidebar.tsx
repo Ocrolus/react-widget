@@ -20,7 +20,7 @@ export default function Sidebar() {
           "Personal Details",
           "Employment & Income",
           "Mortgage Loan Details",
-        ].map((key) => (
+        ].map(key => (
           <ListItem key={key}>
             <ListItemButton selected={key === "Employment & Income"}>
               {key}
@@ -33,7 +33,7 @@ export default function Sidebar() {
           "Privacy Policies",
           "Contact Us",
           "Make an Appointment",
-        ].map((key) => (
+        ].map(key => (
           <ListItem key={key}>
             <ListItemButton>{key}</ListItemButton>
           </ListItem>

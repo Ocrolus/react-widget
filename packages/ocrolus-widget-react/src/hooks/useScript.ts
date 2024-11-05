@@ -4,11 +4,11 @@ export const useScript = (
   url: string,
   scriptId: string,
   onLoad?: () => void,
-  onError?: () => void
+  onError?: () => void,
 ) => {
   useEffect(() => {
     let script: HTMLScriptElement | null = document.getElementById(
-      scriptId
+      scriptId,
     ) as HTMLScriptElement | null;
 
     const handleLoad = () => {
@@ -54,7 +54,7 @@ export const useScript = (
 export const useBundle = (
   url: string,
   onLoad: () => void,
-  onError?: () => void
+  onError?: () => void,
 ) => {
   const memoizedURL = useMemo(() => url, [url]);
 

@@ -7,7 +7,7 @@ const buildOptions = (entry, outdir) => ({
   sourcemap: true,
   target: 'esnext',
   loader: { '.ts': 'ts', '.tsx': 'tsx' },
-  outdir: outdir,
+  outdir,
   external: ['react', 'react-dom'], // Prevents bundling React dependencies
 });
 

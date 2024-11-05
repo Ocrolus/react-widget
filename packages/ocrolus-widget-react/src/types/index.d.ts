@@ -1,6 +1,6 @@
 import React from "react";
-import { OcrolusUploadProps } from "@ocrolus-widget-react/src/types/OcrolusUpload";
-import { loaderConfig } from "@ocrolus-widget-react/src/types/loader";
+import { OcrolusUploadProps } from "packages/ocrolus-widget-react/src/types/OcrolusUpload";
+import { loaderConfig } from "packages/ocrolus-widget-react/src/types/loader";
 
 export interface OcrolusLibrary {
   OcrolusUpload?: (

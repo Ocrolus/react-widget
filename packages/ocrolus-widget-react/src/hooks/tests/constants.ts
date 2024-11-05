@@ -1,4 +1,4 @@
-import { Configurations } from "@ocrolus-widget-react/src/types/appTypes";
+import { Configurations } from "packages/ocrolus-widget-react/src/types/appTypes";
 
 const config = {
   bankBodyText: "Securely connect your bank account and we'll upload the bank statements for you.",

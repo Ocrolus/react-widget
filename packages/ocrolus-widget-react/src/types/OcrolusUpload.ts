@@ -1,4 +1,4 @@
-import {WidgetError} from '@ocrolus-widget-react/src/types/error';
+import {WidgetError} from 'packages/ocrolus-widget-react/src/types/error';
 
 export interface OnCloseData {
   uploadedFileCount: number;

@@ -1,6 +1,6 @@
 const toCamel = (s: string): string =>
   s.replace(/([-_][a-z])/gi, (match: string) =>
-    match.toUpperCase().replace("-", "").replace("_", "")
+    match.toUpperCase().replace("-", "").replace("_", ""),
   );
 
 const isArray = (a: any): boolean => Array.isArray(a);

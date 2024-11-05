@@ -1,18 +1,23 @@
-import {useState, useCallback} from 'react';
-import {OcrolusUploadHookValues, OcrolusUploadOptions} from '@ocrolus-widget-react/src/types/OcrolusUpload';
-import {useWidgetConfig} from '@ocrolus-widget-react/src/hooks/useWidgetConfig';
-import {WidgetError} from '@ocrolus-widget-react/src/types/error';
-import {useIframeCallbacks} from '@ocrolus-widget-react/src/utils/hooks';
-import {EVENTS} from '@ocrolus-widget-react/src/constants';
-import {initializeModal} from '@ocrolus-widget-react/src/utils/modal';
-import {useLoader} from '@ocrolus-widget-react/src/hooks/useLoader';
+import { useState, useCallback } from "react";
+import {
+  OcrolusUploadHookValues,
+  OcrolusUploadOptions,
+} from "packages/ocrolus-widget-react/src/types/OcrolusUpload";
+import { useWidgetConfig } from "packages/ocrolus-widget-react/src/hooks/useWidgetConfig";
+import { WidgetError } from "packages/ocrolus-widget-react/src/types/error";
+import { useIframeCallbacks } from "packages/ocrolus-widget-react/src/utils/hooks";
+import { EVENTS } from "packages/ocrolus-widget-react/src/constants";
+import { initializeModal } from "packages/ocrolus-widget-react/src/utils/modal";
+import { useLoader } from "packages/ocrolus-widget-react/src/hooks/useLoader";
 
-export function useWidget(options: OcrolusUploadOptions): OcrolusUploadHookValues {
+export function useWidget(
+  options: OcrolusUploadOptions,
+): OcrolusUploadHookValues {
   const [uploadedFileCount, setUploadedFileCount] = useState<number>(0);
-  const {config} = useWidgetConfig(options.widgetUuid, options.token);
+  const { config } = useWidgetConfig(options.widgetUuid, options.token);
 
   const onClose = useCallback(
-    (data: {uploadedFileCount: number}) => {
+    (data: { uploadedFileCount: number }) => {
       if (options.onClose) {
         return options.onClose(data);
       }
@@ -31,27 +36,32 @@ export function useWidget(options: OcrolusUploadOptions): OcrolusUploadHookValue
     const newCount = uploadedFileCount + newUploadCount;
     setUploadedFileCount(newCount);
 
-    onClose({uploadedFileCount: newCount});
+    onClose({ uploadedFileCount: newCount });
   };
   const handleError = (error: WidgetError) => {
     onError(error);
   };
 
-  const {ready, error} = useLoader(config, options.widgetUuid, options.token, {
-    onError: handleError,
-  });
+  const { ready, error } = useLoader(
+    config,
+    options.widgetUuid,
+    options.token,
+    {
+      onError: handleError,
+    },
+  );
 
-  useIframeCallbacks({handleError, handleUploaderClose});
+  useIframeCallbacks({ handleError, handleUploaderClose });
 
   const open = useCallback(() => initializeModal(config), [config]);
   const exit = useCallback(() => {
-    const data = {uploadedFileCount};
+    const data = { uploadedFileCount };
     window.parent.postMessage(
       {
         type: EVENTS.CLOSE_FILE_UPLOADER,
         metaData: data,
       },
-      '*',
+      "*",
     );
     onClose(data);
   }, [onClose, uploadedFileCount]);

@@ -1,5 +1,5 @@
-import { EVENTS } from "@ocrolus-widget-react/src/constants";
-import { WidgetErrorDictionary } from "@ocrolus-widget-react/src/types/error";
+import { EVENTS } from "packages/ocrolus-widget-react/src/constants";
+import { WidgetErrorDictionary } from "packages/ocrolus-widget-react/src/types/error";
 
 export const WIDGET_ERRORS: WidgetErrorDictionary = {
     UNABLE_TO_INITIALIZE_LIBRARY: {
@@ -8,11 +8,10 @@ export const WIDGET_ERRORS: WidgetErrorDictionary = {
     },
     UNABLE_TO_FETCH_CONIFG: {
       code: EVENTS.INITIALIZE_CONFIG_FAILURE,
-      cause: 'Unable to fetch widget Library'
+      cause: 'Unable to fetch widget Library',
     },
     INITIALIZE_JWT_TOKEN_FAILURE: {
       code: EVENTS.INITIALIZE_JWT_TOKEN_FAILURE,
       cause: 'Unable to initialize on jwt token',
     },
   };
-  

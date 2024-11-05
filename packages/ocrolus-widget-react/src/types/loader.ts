@@ -1,4 +1,4 @@
-import { Configurations } from "@ocrolus-widget-react/src/types/appTypes";
+import { Configurations } from "packages/ocrolus-widget-react/src/types/appTypes";
 
 export interface loaderConfig {
   id: string;

@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import { Box, Input, Button, CircularProgress } from "@mui/material";
-import Sidebar from "@example/src/Components/Sidebar";
-import IncomePrompt from "@example/src/Components/IncomePrompt";
-import "@example/src/App.css";
-import Module from "@example/src/Components/Module";
-import { useWidget } from "ocrolus-widget-react";
+import Sidebar from "packages/example/src/Components/Sidebar";
+import IncomePrompt from "packages/example/src/Components/IncomePrompt";
+import "packages/example/src/App.css";
+import Module from "packages/example/src/Components/Module";
+import { useInitializer, useWidget } from "ocrolus-widget-react";
 
+const widgetUuid = '4fd02492-9f30-4df5-8a0f-33a7483e2051';
 
 function App() {
-  const options = {
-    widgetUuid: "145a1aaf-4af1-4dae-9d11-5d8e5bc583f7",
-  };
+  const [options, setOptions] = useState({
+    widgetUuid,
+  });
   const { ready, open } = useWidget(options);
+  useInitializer({ widgetUuid })
+  console.log(ready)
   const [userKey, setUserKey] = useState("");
   const [bookName, setFolderName] = useState("");
+
   const [submit, setSubmit] = useState(false);
   useEffect(() => {
     if (submit) {
-      (window as any).getAuthToken = async function () {
+      (async function () {
         const response = await fetch("https://auth.ocrolusexample.com/token", {
           method: "POST",
           headers: {
@@ -25,13 +29,16 @@ function App() {
           },
           body: JSON.stringify({
             userId: userKey,
-            bookName: bookName,
+            bookName,
           }),
         });
         const json = await response.json();
+        setOptions(prevOpts => ({
+          ...prevOpts, token: json.accessToken,
+        }));
         return json.accessToken;
-      };
-    }
+      }());
+    };
   }, [userKey, bookName, submit]);
 
   return (
@@ -67,9 +74,9 @@ function App() {
           <Button onClick={() => setSubmit(!submit)}>Get Token</Button>
         </Box>
         <Module>
-          <Box id="ocrolus-widget-frame">
-            {ready ? <CircularProgress /> : <Box>hello</Box>}
-          </Box>
+          {/* <Box id="ocrolus-widget-frame"> */}
+            {ready ? <div onClick={() => open()} >hello!!!</div> : <Box>hello</Box>}
+          {/* </Box> */}
         </Module>
       </Box>
     </Box>

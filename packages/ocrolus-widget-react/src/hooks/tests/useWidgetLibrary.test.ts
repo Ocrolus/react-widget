@@ -8,7 +8,7 @@ const widgetLibrary = {
   loader: jest.fn(),
 };
 
-jest.mock("@ocrolus-widget-react/src/hooks/useScript", () => ({
+jest.mock("packages/ocrolus-widget-react/src/hooks/useScript", () => ({
   useBundle: (_url: string, onLoad: () => void) => {
     window.OcrolusWidgetLibrary = widgetLibrary;
     onLoad();
@@ -46,7 +46,7 @@ describe("useWidgetLibrary", () => {
 
     expect(result.current.error).toBeDefined();
     expect(result.current.error).toEqual(
-      WIDGET_ERRORS.UNABLE_TO_INITIALIZE_LIBRARY
+      WIDGET_ERRORS.UNABLE_TO_INITIALIZE_LIBRARY,
     );
   });
 

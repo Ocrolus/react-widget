@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Configurations } from "@ocrolus-widget-react/src/types/appTypes";
-import { snakeToCamel } from "@ocrolus-widget-react/src/utils/helper";
-import { request } from "@ocrolus-widget-react/src/utils/request";
-import { WIDGET_HOST } from "@ocrolus-widget-react/src/constants";
-import { WIDGET_ERRORS } from "@ocrolus-widget-react/src/constants/errors";
-import { WidgetError } from "@ocrolus-widget-react/src/types/error";
+import { Configurations } from "packages/ocrolus-widget-react/src/types/appTypes";
+import { snakeToCamel } from "packages/ocrolus-widget-react/src/utils/helper";
+import { request } from "packages/ocrolus-widget-react/src/utils/request";
+import { WIDGET_HOST } from "packages/ocrolus-widget-react/src/constants";
+import { WIDGET_ERRORS } from "packages/ocrolus-widget-react/src/constants/errors";
+import { WidgetError } from "packages/ocrolus-widget-react/src/types/error";
 
 export function useWidgetConfig(widgetUuid: string, jwtToken?: string) {
   const [widgetConfig, setWidgetConfig] = useState<Configurations>({
@@ -20,7 +20,7 @@ export function useWidgetConfig(widgetUuid: string, jwtToken?: string) {
     (async () => {
       try {
         const response = await request(
-          `${WIDGET_HOST}/v1/widget/${widgetUuid}/config`
+          `${WIDGET_HOST}/v1/widget/${widgetUuid}/config`,
         );
         if (!response) {
           setError(WIDGET_ERRORS.UNABLE_TO_FETCH_CONIFG);

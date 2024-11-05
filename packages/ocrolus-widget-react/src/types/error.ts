@@ -1,4 +1,4 @@
-import {EVENTS} from '@ocrolus-widget-react/src/constants';
+import {EVENTS} from 'packages/ocrolus-widget-react/src/constants';
 
 export interface WidgetError {
   cause: string;

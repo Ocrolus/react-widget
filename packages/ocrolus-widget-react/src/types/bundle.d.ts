@@ -1,13 +1,17 @@
-import { OcrolusLibrary } from "@ocrolus-widget-react/src/types";
+import { InitializerProps } from "packages/ocrolus-widget-react/src/hooks/useInitializer";
+import { OcrolusLibrary } from "packages/ocrolus-widget-react/src/types";
 import {
   OcrolusUploadHookValues,
   OcrolusUploadOptions,
   OcrolusUploadProps,
-} from "@ocrolus-widget-react/src/types/OcrolusUpload";
-import { OcrolusUpload } from "@ocrolus-widget-react/src/useWidget";
-import { OcrolusUploadTypes as widgetTypes } from "@ocrolus-widget-react/src/useWidget";
+} from "packages/ocrolus-widget-react/src/types/OcrolusUpload";
+import { OcrolusUpload } from "packages/ocrolus-widget-react/src/useWidget";
+import { OcrolusUploadTypes as widgetTypes } from "packages/ocrolus-widget-react/src/useWidget";
 
-declare module "ocrolus-widget-react" {
+declare module "packages/ocrolus-widget-react" {
+  export declare function useInitializer(
+    params: InitializerProps
+  ): void;
   export declare function useWidget(
     props: OcrolusUploadOptions
   ): OcrolusUploadHookValues;

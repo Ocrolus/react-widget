@@ -1,6 +1,6 @@
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import { Box } from '@mui/material'
-import Module from '@example/src/Components/Module'
+import Module from 'packages/example/src/Components/Module'
 
 export default function IncomePrompt() {
     return (
