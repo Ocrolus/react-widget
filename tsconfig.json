@@ -1,13 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
-    // "typeRoots": ["./node_modules/@types", "src/types/typings"],
+    "typeRoots": ["./node_modules/@types"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowUmdGlobalAccess": true,
@@ -20,15 +16,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "sourceMap": true,
     "outDir": "dist",
     "emitDeclarationOnly": true,
-    "baseUrl": "./",
-    "paths": {
-      "*": ["*", "src/*"]
-    }
+    "baseUrl": "./"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["node_modules", "**/*.test.tsx", "**/*.test.ts"]
+  "include": [
+    "packages/**/src/**/*.ts",
+    "packages/**/src/**/*.tsx",
+    "packages/**/src/**/*.d.ts"
+  ]
 }
