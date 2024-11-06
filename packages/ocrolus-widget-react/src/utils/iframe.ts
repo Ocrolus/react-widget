@@ -18,13 +18,14 @@ export function updateWidgetConfig(win: Window, eventType: string, config: Confi
 export function createInlineIframe(
   win: Window,
   widgetHost: string,
-  lenderUuid: string,
+  widgetUuid: string,
   page: string,
-  previewMode: boolean
+  previewMode: boolean = false
 ): HTMLIFrameElement {
   const iframe = win.document.createElement('iframe');
   iframe.id = INLINE_IFRAME_ID;
-  iframe.src = `${widgetHost}/?page=${page}&lender_uuid=${lenderUuid}&preview=${previewMode}`;
+  iframe.src = `${widgetHost}/v1/widget/${widgetUuid}?page=${page}&preview=${previewMode}`;
+  iframe.setAttribute('data-testid', INLINE_IFRAME_ID);
   iframe.style.width = '100%';
   iframe.style.border = 'none';
   iframe.style.height = '100%';
@@ -35,7 +36,7 @@ export function createInlineIframe(
 export function attachMessageListeners(
   win: Window,
   widgetHost: string,
-  lenderUuid: string,
+  widgetUuid: string,
   mergedConfig: DefaultConfig
 ) {
   let intermediateStoreOfConfig: Configurations | null = null;
@@ -46,7 +47,7 @@ export function attachMessageListeners(
         const inlineIframe = getIframe(INLINE_IFRAME_ID, win);
         if (inlineIframe) {
           const config = {
-            lenderUuid,
+            widgetUuid,
             jwtToken: 'test-jwt',
             ...mergedConfig,
           };
@@ -63,7 +64,7 @@ export function attachMessageListeners(
         const inlineIframe = getIframe(INLINE_IFRAME_ID, win);
         if (inlineIframe) {
           const config = {
-            lenderUuid,
+            widgetUuid,
             ...mergedConfig,
           };
           inlineIframe.contentWindow?.postMessage(
@@ -99,7 +100,7 @@ export function attachMessageListeners(
           }
         };
         if (!getIframe(MODAL_IFRAME_ID, win)) {
-          const modalIframe = addModalIframe(win, widgetHost, lenderUuid, getPageName(data.type));
+          const modalIframe = addModalIframe(win, widgetHost, widgetUuid, getPageName(data.type));
           intermediateStoreOfConfig = data.config;
           modalIframe.onload = () => {
             stretchModalIframe(modalIframe);
@@ -129,10 +130,10 @@ export function attachMessageListeners(
 export function addModalIframe(
   win: Window,
   widgetHost: string,
-  lenderUuid: string,
+  widgetUuid: string,
   pageName: string
 ): HTMLIFrameElement {
-  const modalIframe = createModalIframe(win, widgetHost, lenderUuid, pageName);
+  const modalIframe = createModalIframe(win, widgetHost, widgetUuid, pageName);
   win.document.body.appendChild(modalIframe);
 
   if (!modalIframe.contentWindow) {
@@ -179,12 +180,12 @@ export async function getJwtToken(win: Window): Promise<string> {
 export function createModalIframe(
   win: Window,
   widgetHost: string,
-  lenderUuid: string,
+  widgetUuid: string,
   page: string
 ): HTMLIFrameElement {
   const iframe = win.document.createElement('iframe');
   iframe.id = MODAL_IFRAME_ID;
-  iframe.src = `${widgetHost}/?page=${page}&lender_uuid=${lenderUuid}`;
+  iframe.src = `${widgetHost}/v1/widget/${widgetUuid}?page=${page}`;
   iframe.style.position = 'fixed';
   iframe.style.zIndex = '100000';
   iframe.style.top = '0';

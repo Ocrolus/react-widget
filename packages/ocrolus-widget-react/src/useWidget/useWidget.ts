@@ -35,6 +35,7 @@ export function useWidget(
   const handleUploaderClose = (newUploadCount: number) => {
     const newCount = uploadedFileCount + newUploadCount;
     setUploadedFileCount(newCount);
+    console.log(window.parent)
 
     onClose({ uploadedFileCount: newCount });
   };

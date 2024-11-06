@@ -59,16 +59,17 @@ export function useIframeCallbacks(callbacks: {
         } else if (type === EVENTS.INITIALIZE_JWT_TOKEN_FAILURE) {
           handleError(WIDGET_ERRORS.INITIALIZE_JWT_TOKEN_FAILURE);
         } else if (type === EVENTS.CLOSE_FILE_UPLOADER) {
+          console.log(data)
           if (!isCloseFileUploaderMessage(data)) {
             throw new Error("Invalid message type. Missing uploaded medata.");
           }
-          const { uploadedFileCount } = data.metadata;
+          const { uploadedFileCount } = data.metaData;
           handleUploaderClose(uploadedFileCount);
         } else if (type === EVENTS.CLOSE_PLAID_CONNECT) {
           if (!isPlaidMessageMessage(data)) {
             throw new Error("Invalid message type. Missing bank connection medata.");
           }
-          const { isBankConnected } = data.metadata;
+          const { isBankConnected } = data.metaData;
           handleBankConnected(isBankConnected);
         }
       }

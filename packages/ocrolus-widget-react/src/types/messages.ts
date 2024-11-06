@@ -16,7 +16,7 @@ type MessageMetadata = ClosePlaidMetadata | CloseFileUploaderMetadata;
 export type Message = {
   type: EventType;
   config?: Configurations;
-  metadata?: MessageMetadata;
+  metaData?: MessageMetadata;
 };
 
 export interface WidgetConfigMessage extends Message {
@@ -26,12 +26,12 @@ export interface WidgetConfigMessage extends Message {
 
 export interface CloseFileUploaderMessage extends Message {
   type: string;
-  metadata: CloseFileUploaderMetadata;
+  metaData: CloseFileUploaderMetadata;
 }
 
 export interface ClosePlaidMessage extends Message {
   type: string;
-  metadata: ClosePlaidMetadata;
+  metaData: ClosePlaidMetadata;
 }
 
 export type WidgetMessage =
@@ -42,14 +42,14 @@ export type WidgetMessage =
 export function isPlaidMessageMessage(
   message: WidgetMessage,
 ): message is ClosePlaidMessage {
-  return (message as ClosePlaidMessage).metadata.isBankConnected !== undefined;
+  return (message as ClosePlaidMessage).metaData.isBankConnected !== undefined;
 }
 
 export function isCloseFileUploaderMessage(
   message: WidgetMessage,
 ): message is CloseFileUploaderMessage {
   return (
-    (message as CloseFileUploaderMessage).metadata.uploadedFileCount !==
+    (message as CloseFileUploaderMessage).metaData.uploadedFileCount !==
     undefined
   );
 }

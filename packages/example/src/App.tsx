@@ -5,6 +5,7 @@ import IncomePrompt from "packages/example/src/Components/IncomePrompt";
 import "packages/example/src/App.css";
 import Module from "packages/example/src/Components/Module";
 import { useInitializer, useWidget } from "ocrolus-widget-react";
+import { WIDGET_HOST } from "packages/ocrolus-widget-react/src/constants";
 
 const widgetUuid = '4fd02492-9f30-4df5-8a0f-33a7483e2051';
 
@@ -13,7 +14,7 @@ function App() {
     widgetUuid,
   });
   const { ready, open } = useWidget(options);
-  useInitializer({ widgetUuid })
+  useInitializer({ widgetUuid, host: WIDGET_HOST })
   console.log(ready)
   const [userKey, setUserKey] = useState("");
   const [bookName, setFolderName] = useState("");
@@ -74,9 +75,8 @@ function App() {
           <Button onClick={() => setSubmit(!submit)}>Get Token</Button>
         </Box>
         <Module>
-          {/* <Box id="ocrolus-widget-frame"> */}
             {ready ? <div onClick={() => open()} >hello!!!</div> : <Box>hello</Box>}
-          {/* </Box> */}
+          <Box id="ocrolus-widget-frame"/>
         </Module>
       </Box>
     </Box>
